@@ -1,0 +1,222 @@
+<robot name="dinamos_robot">
+
+    <!-- link: base-->
+    <link name="base">
+      <visual>
+        <geometry>
+          <box size="0.25 0.25 0.10"/>
+        </geometry>
+      </visual>
+    </link>
+
+ 	<!-- link: coluna-->
+    <link name="coluna">
+      <visual>
+        <geometry>
+          <cylinder length="0.7" radius="0.03"/>
+        </geometry>
+      </visual>
+    </link>
+
+ 	<!-- link: torso-->
+    <link name="torso">
+      <visual>
+        <geometry>
+          <box size="0.15 0.15 0.10"/>
+        </geometry>
+      </visual>
+    </link>
+
+ 	<!-- link: ombro_esquerdo-->
+    <link name="ombro_esquerdo">
+      <visual>
+        <geometry>
+           <cylinder length="0.20" radius="0.01"/>
+        </geometry>
+        <origin xyz="0.0 0 0.10" rpy="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="esfera_ombro_esquerdo">
+      <visual>
+        <geometry>
+          <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+ 	<!-- link: ombro_esquerdo-->
+    <link name="ombro_direito">
+      <visual>
+        <geometry>
+           <cylinder length="0.20" radius="0.01"/>
+        </geometry>
+        <origin xyz="0.0 0 0.10" rpy="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="esfera_ombro_direito">
+      <visual>
+        <geometry>
+          <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- link: cotovelo_esquerdo (representa a junta do cotovelo) -->
+    <link name="cotovelo_esquerdo">
+      <visual>
+        <geometry>
+           <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- link: antebraco_esquerdo (novo antebraço) -->
+    <link name="antebraco_esquerdo">
+      <visual>
+        <geometry>
+           <cylinder length="0.25" radius="0.01"/>
+        </geometry>
+        <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+      </visual>
+    </link>
+
+	    <!-- link: cotovelo_direito (representa a junta do cotovelo) -->
+    <link name="cotovelo_direito">
+      <visual>
+        <geometry>
+           <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- link: antebraco_direito (novo antebraço) -->
+    <link name="antebraco_direito">
+      <visual>
+        <geometry>
+           <cylinder length="0.25" radius="0.01"/>
+        </geometry>
+        <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+      </visual>
+    </link>
+
+    <link name="esfera_mao_direito">
+      <visual>
+        <geometry>
+          <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="esfera_mao_esquerdo">
+      <visual>
+        <geometry>
+          <sphere radius="0.02"/>
+        </geometry>
+      </visual>
+    </link>
+
+	<!-- joints -->
+
+    <!-- joint: base -> coluna -->
+    <joint name="base_para_coluna" type="revolute">
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+      <parent link="base"/>
+      <child link="coluna"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="30" velocity="0.5" lower="-1.5707" upper="1.5707"/>
+    </joint>
+
+    <!-- joint: torso -> coluna -->
+    <joint name="coluna_para_torso" type="fixed">
+      <origin xyz="0.0 0 0.3" rpy="0 0 0"/>
+      <parent link="coluna"/>
+      <child link="torso"/>
+    </joint>
+
+    <!-- joint: torso -> ombro_esquerdo -->
+    <joint name="torso_para_esfera_ombro" type="fixed">
+      <origin xyz="0.0 0.085 0.0" rpy="0 0 0"/>
+      <parent link="torso"/>
+      <child link="esfera_ombro_esquerdo"/>
+    </joint>
+
+    <!-- joint: esfera -> ombro_esquerdo (revolute, mesmo que o ombro normal) -->
+    <joint name="esfera_para_ombro_esquerdo" type="revolute">
+      <origin xyz="0.0 0.0 0.0" rpy="3.14 0 0"/>
+      <parent link="esfera_ombro_esquerdo"/>
+      <child link="ombro_esquerdo"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="30" velocity="0.5" lower="0.0" upper="3.0"/>
+    </joint>
+
+    <!-- joint: torso -> ombro_esquerdo -->
+    <joint name="torso_para_esfera_ombro_direito" type="fixed">
+      <origin xyz="0.0 -0.085 0.0" rpy="0 0 0"/>
+      <parent link="torso"/>
+      <child link="esfera_ombro_direito"/>
+    </joint>
+
+    <!-- joint: esfera -> ombro_esquerdo (revolute, mesmo que o ombro normal) -->
+    <joint name="esfera_para_ombro_direito" type="revolute">
+      <origin xyz="0.0 0.0 0.0" rpy="-3.14 0 0"/>
+      <parent link="esfera_ombro_direito"/>
+      <child link="ombro_direito"/>
+      <axis xyz="-1 0 0"/>
+      <limit effort="30" velocity="0.5" lower="0.0" upper="3.0"/>
+    </joint>
+
+    <joint name="ombro_para_cotovelo_esquerdo" type="revolute">
+      <origin xyz="0 0 0.20" rpy="3.14 0 0"/>
+      <parent link="ombro_esquerdo"/>
+      <child link="cotovelo_esquerdo"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="0" upper="0"/>
+    </joint>
+
+    <!-- novo joint: cotovelo_esquerdo -> antebraco_esquerdo (movimento do antebraço) -->
+    <joint name="cotovelo_para_antebraco_esquerdo" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="cotovelo_esquerdo"/>
+      <child link="antebraco_esquerdo"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="-1.57" upper="1.57"/>
+    </joint>
+
+    <!-- joint: ombro_direito -> cotovelo_direito -->
+    <joint name="ombro_para_cotovelo_direito" type="revolute">
+      <origin xyz="0 0 0.20" rpy="3.14 0 0"/>
+      <parent link="ombro_direito"/>
+      <child link="cotovelo_direito"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="0" upper="0"/>
+    </joint>
+
+    <!-- joint: cotovelo_direito -> antebraco_direito -->
+    <joint name="cotovelo_para_antebraco_direito" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="cotovelo_direito"/>
+      <child link="antebraco_direito"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="-1.57" upper="1.57"/>
+    </joint>
+
+
+	<joint name="antebraco_para_mao_direito" type="revolute">
+      <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+      <parent link="antebraco_direito"/>
+      <child link="esfera_mao_direito"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="3.0" upper="0"/>
+    </joint>
+
+	<joint name="antebraco_para_mao_esquerdo" type="revolute">
+      <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+      <parent link="antebraco_esquerdo"/>
+      <child link="esfera_mao_esquerdo"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" velocity="0.5" lower="3.0" upper="0"/>
+    </joint>
+
+</robot>
