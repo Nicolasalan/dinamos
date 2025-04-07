@@ -51,7 +51,7 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        base_scan:
+        base_link:
           Value: true
         camera:
           Value: true
@@ -75,7 +75,7 @@ Visualization Manager:
       Tree:
         base_link:
           torso:
-            base_scan:
+            base_link:
               {}
             left_leg:
               left_base:
@@ -107,7 +107,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        base_scan:
+        base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -177,7 +177,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_scan
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:

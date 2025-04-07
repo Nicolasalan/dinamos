@@ -16,8 +16,8 @@ services:
     platform: linux/arm64/v8
     ipc: host
     volumes:
-      - ./src/run.bash:/dinamos_ws/src/run.bash:rw
       - ./src/:/dinamos_ws/src/:rw
+      - ./run.bash:/dinamos_ws/run.bash:rw
     depends_on:
       - xserver
     volumes_from:
