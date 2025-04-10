@@ -257,5 +257,356 @@
     <axis xyz="-1 0 0" />
   </joint>
 
+  <!-- link: cotovelo_esquerdo -->
+  <link name="cotovelo_esquerdo">
+    <inertial>
+      <mass value="0.15" />
+      <inertia
+                ixx="0.000024"
+                ixy="0"
+                ixz="0"
+                iyy="0.000024"
+                iyz="0"
+                izz="0.000024"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ombro_para_cotovelo_esquerdo" type="fixed">
+    <origin xyz="0 0 0.20" rpy="3.14 0 0" />
+    <parent link="ombro_esquerdo" />
+    <child link="cotovelo_esquerdo" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="antebraco_esquerdo">
+    <inertial>
+      <mass value="0.3" />
+      <inertia
+                ixx="0.001570"
+                ixy="0"
+                ixz="0"
+                iyy="0.001570"
+                iyz="0"
+                izz="0.000015"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <cylinder length="0.25" radius="0.01" />
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.25" radius="0.01" />
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0" />
+    </collision>
+  </link>
+
+  <!-- joint: cotovelo_esquerdo -> antebraco_esquerdo -->
+  <joint name="cotovelo_para_antebraco_esquerdo" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="cotovelo_esquerdo" />
+    <child link="antebraco_esquerdo" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- link: esfera_mao_esquerdo -->
+  <link name="esfera_mao_esquerdo">
+    <inertial>
+      <mass value="0.05" />
+      <inertia
+                ixx="0.000008"
+                ixy="0"
+                ixz="0"
+                iyy="0.000008"
+                iyz="0"
+                izz="0.000008"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="antebraco_para_mao_esquerdo" type="fixed">
+    <origin xyz="0 0 -0.25" rpy="0 0 0" />
+    <parent link="antebraco_esquerdo" />
+    <child link="esfera_mao_esquerdo" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- link: cotovelo_direito -->
+  <link name="cotovelo_direito">
+    <inertial>
+      <mass value="0.15" />
+      <inertia
+                ixx="0.000024"
+                ixy="0"
+                ixz="0"
+                iyy="0.000024"
+                iyz="0"
+                izz="0.000024"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- joint: ombro_direito -> cotovelo_direito -->
+  <joint name="ombro_para_cotovelo_direito" type="fixed">
+    <origin xyz="0 0 0.20" rpy="3.14 0 0" />
+    <parent link="ombro_direito" />
+    <child link="cotovelo_direito" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- link: antebraco_direito -->
+  <link name="antebraco_direito">
+    <inertial>
+      <mass value="0.3" />
+      <inertia
+                ixx="0.001570"
+                ixy="0"
+                ixz="0"
+                iyy="0.001570"
+                iyz="0"
+                izz="0.000015"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <cylinder length="0.25" radius="0.01" />
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.25" radius="0.01" />
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0" />
+    </collision>
+  </link>
+
+  <!-- joint: cotovelo_direito -> antebraco_direito -->
+  <joint name="cotovelo_para_antebraco_direito" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="cotovelo_direito" />
+    <child link="antebraco_direito" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  !-- link: esfera_mao_direito -->
+  <link name="esfera_mao_direito">
+    <inertial>
+      <mass value="0.05" />
+      <inertia
+                ixx="0.000008"
+                ixy="0"
+                ixz="0"
+                iyy="0.000008"
+                iyz="0"
+                izz="0.000008"
+            />
+    </inertial>
+    <visual>
+      <material name="Blue">
+    	<color rgba="0 0 1 1" />
+  	  </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="antebraco_para_mao_direito" type="fixed">
+    <origin xyz="0 0 -0.25" rpy="0 0 0" />
+    <parent link="antebraco_direito" />
+    <child link="esfera_mao_direito" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="sensor_lidar">
+    <inertial>
+      <mass value="0.1" />
+      <inertia
+                ixx="0.000016"
+                ixy="0"
+                ixz="0"
+                iyy="0.000016"
+                iyz="0"
+                izz="0.000016"
+            />
+    </inertial>
+    <visual>
+    <material name="Green">
+      <color rgba="0 1 0 1" />
+    </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- sensor lidar-->
+  <joint name="sensor_lidar_base_link" type="fixed">
+    <origin xyz="0.125 0.0 0.05" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="sensor_lidar" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="sensor_camera">
+    <inertial>
+      <mass value="0.1" />
+      <inertia
+                ixx="0.000016"
+                ixy="0"
+                ixz="0"
+                iyy="0.000016"
+                iyz="0"
+                izz="0.000016"
+            />
+    </inertial>
+    <visual>
+      <material name="Green">
+      	<color rgba="0 1 0 1" />
+      </material>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- sensor camera-->
+  <joint name="sensor_camera_torso" type="fixed">
+    <origin xyz="0.075 0.0 0.0" rpy="0 0 0" />
+    <parent link="torso" />
+    <child link="sensor_camera" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Plugins Gazebo -->
+
+  <!-- Plugin para a câmera -->
+  <gazebo reference="sensor_camera">
+    <sensor type="camera" name="camera_sensor">
+      <update_rate>30.0</update_rate>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>600</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>sensor_camera</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Plugin para o lidar -->
+  <gazebo reference="sensor_lidar">
+    <sensor type="ray" name="lidar_sensor">
+      <update_rate>30</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>640</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5707</min_angle>
+            <max_angle>1.5707</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>sensor_lidar</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
 
 </robot>

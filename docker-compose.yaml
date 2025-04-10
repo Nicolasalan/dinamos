@@ -18,6 +18,7 @@ services:
     volumes:
       - ./src/:/dinamos_ws/src/:rw
       - ./run.bash:/dinamos_ws/run.bash:rw
+      - ./start.bash:/dinamos_ws/start.bash:rw
     depends_on:
       - xserver
     volumes_from:
